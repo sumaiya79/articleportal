@@ -1,0 +1,84 @@
+<!--adds header to the top of component, uses header selector-->
+
+<app-header></app-header>
+
+
+<!--Create listing component, taking input as title, description publish date and image-->
+<!--Input data as form data using 2 - way binding, does validation of (input) -->
+
+
+<div class="flex-container">
+  <div class="form_main">
+    <h2 class="heading"><b><strong>Article </strong> Details </b></h2>
+    <div class="form">
+
+      <form>
+        <!--input for title, validates title on input and displays an error if title is not entered or the entered -->
+        <!--title exists-->
+        <input type="text" required="required" placeholder="Enter Title (required) . . ." id = "title"
+               [(ngModel)]="title" name="title" class="txt" autocomplete="off" (input)="validateTitle()"
+               (focus)="showTitleTip()" (blur)="hideTitleTip()">
+        <div class="alert alert-danger alert-dismissible fade show" *ngIf="titleError">
+          <strong>Error!</strong> {{title_error}}
+        </div>
+
+
+        <!--input for description, validates description on input and displays an error if description is not entered-->
+        <textarea type="text" placeholder="Enter Description (required) . . ." id="desc" name="description"
+                  [(ngModel)]="description" class="txt" autocomplete="off" (input)="validateDescription()"
+                  (focus)="showDescTip()" (blur)="hideDescTip()"></textarea>
+        <div class="alert alert-danger alert-dismissible fade show" *ngIf="descError">
+          <strong>Error!</strong> Above field is required, please enter the description.
+        </div>
+
+
+        <!--input for publish date, validates publish date and specifies the limit by min date and max date,
+        displays error if any of the attribute is un enetered (day, month or year) or publish date exceed the specified
+        limits-->
+        <div class="publish" id='pub'>Publish Date
+          <input placeholder="Publish Date" type="date" id="publishdate" required="required" autocomplete="off"
+                 name="publishdate" [(ngModel)]="publishdate" min="1900-01-01" max="2018-01-01"
+                 (input)="validateDate()"/>
+        </div>
+        <div class="alert alert-danger alert-dismissible fade show" *ngIf="publishError">
+          <strong>Error!</strong> {{this.publish_error}}
+        </div>
+
+        <br>
+
+
+        <!--input for file, reads a file and covert its url and displays in an <img> where url is binded, ng2 File Select-->
+        <!--to upload selected file to the server, image/* specifies the type of file to be 'image' only and displays
+        error if file is not selected or does not matches the specified type, accordingly-->
+        <input type="file" name="photo"  accept="image/*" (change)="readUrl($event)" id='finput' class="finput"
+        ng2FileSelect [uploader] = "uploader"/>
+
+
+        <div id='image_pre' *ngIf="image_preview">
+          <img [src]="url" style="width: 200px; height: 200px; object-fit:cover; border-radius: 5%" alt="Preview Image">
+        </div>
+
+        <div class="alert alert-danger alert-dismissible fade show" *ngIf="imageError" style="margin-top: 5px;">
+          <strong>Error!</strong> {{image_error}}
+        </div>
+        <br>
+
+        <!--submit button, validates all the fields are valid or not and prompts the status of form submission-->
+        <button type="button" class="btn btn-info" (click)="submit()"  [disabled]="dis">Create Article</button>
+
+        
+        <div class="alert alert-success" *ngIf="showSuccess" id="success">
+          <strong>Success!</strong> Your article has been published successfully!
+        </div>
+
+
+        <div class="alert alert-danger" *ngIf="submit_error" style="margin-top: 10px">
+          <strong>Error!</strong> Failed to publish article!
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+</div>
+

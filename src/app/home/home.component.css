@@ -1,0 +1,63 @@
+.flex-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cover{
+  width: 100%;
+  height: 732px;
+  background: url("../../assets/Images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+}
+
+.layer{
+  width: 100%;
+  height: 732px;
+  background: rgba(000000000, 0000000000, 000000, 0.5);
+  box-shadow: 0 0 5px 8px;
+  position: absolute;
+  overflow: hidden;
+}
+
+h1{
+  text-align: center;
+  color: white;
+  letter-spacing: 3px;
+  font-family:"Courier New";
+  margin-top: 280px;
+}
+
+h3{
+  text-align: center;
+  color:lightgray;
+  letter-spacing: 3px;
+  font-family:'Courier New';
+}
+
+.btn-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+
+.btn-outline-info{
+  margin-top: 5px;
+  padding: 1%;
+  color: lightgray;
+}
+
+.btn-info{
+  margin-top: 5px;
+  padding: 0.8%;
+  color: lightgray;
+  margin-left: 10px;
+}
+
+
